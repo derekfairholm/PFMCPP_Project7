@@ -20,10 +20,10 @@ struct Character
     virtual const std::string& getName() = 0;
     virtual std::string getStats() = 0;
     
-    virtual void attack( Character& other );
+    virtual void attack(Character& other);
     void defend();
     
-    void help( Character& other );
+    void help(Character& other);
     
     int takeDamage(int damage);
     

@@ -1,10 +1,11 @@
 #include "Dwarf.h"
+#include "Utility.h"
 
-//Dwarf::Dwarf
+Dwarf::Dwarf(const std::string name_, int hitPoints, int armour) : Character(hitPoints, armour, 4), name(name_) { }
 
-//Dwarf::getName
+const std::string& Dwarf::getName() { return name; }
 
-//Dwarf::getStats
+std::string Dwarf::getStats() { return getCharacterStats(this); }
 
 
 
