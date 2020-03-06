@@ -58,6 +58,7 @@ it's very easy to mess this task up.
 int main()
 {
                       //name, hit points, armor. 
+    /*
     Dwarf dwarf { "Maldin the Dwarf", 3, 1 };
     Paladin paladin { "Warrick the Paladin", 5, 2 };
     Dragon dragon { "Garry The Dragon", 200, 50 };
@@ -84,8 +85,10 @@ int main()
     std::cout << std::endl << "end of battle stats:" << std::endl;
     
     std::vector<Character*> characters { &dwarf, &paladin, &dragon, &dragonSlayer };
-    for( auto* character : characters )
+    for( gitauto* character : characters )
         character->printStats();
-    
+    */
     return 0;
 }
+
+

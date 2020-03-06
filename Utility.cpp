@@ -4,6 +4,8 @@
 #include "DefensiveItem.h"
 #include "Character.h"
 
+#include <assert.h>
+
 
 std::vector<std::unique_ptr<Item>> makeHelpfulItems(int num)
 {
@@ -42,8 +44,8 @@ std::string getCharacterStats(Character* ch)
     str += "    " + std::to_string(ch->getHelpfulItems().size()) + " helpful items,  " + std::to_string(ch->getDefensiveItems().size()) + " defensive items";
     return str;
 }
-
-void useDefensiveItem(Character*, Item& item)
+//Not sure here..............................................added pointer name "character"
+void useDefensiveItem(Character* character, Item& item)
 {
     //dwarves, paladins, and DragonSlayers get extra boosts from defensive item.
     if( auto* ch = dynamic_cast<Dwarf*>(character) )
@@ -64,7 +66,7 @@ void useDefensiveItem(Character*, Item& item)
         //dragons don't need defensive items
     }  
 }
-void useHelpfulItem(Character*, Item* item)
+void useHelpfulItem(Character* character, Item* item)
 {
     if( auto* ch = dynamic_cast<Dwarf*>(character) )
     {
@@ -83,7 +85,7 @@ void useHelpfulItem(Character*, Item* item)
         //dragons don't carry helpful items!
     }
 }
-void useAttackItem(Character*, Item* item)
+void useAttackItem(Character* character, Item* item)
 {
     if( auto* ch = dynamic_cast<Dwarf*>(character) )
     {
@@ -106,3 +108,7 @@ void useAttackItem(Character*, Item* item)
         //dragons don't carry attack items!
     }
 }
+
+
+
+
