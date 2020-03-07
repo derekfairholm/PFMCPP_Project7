@@ -3,7 +3,7 @@
 #include <assert.h>
 #include "Utility.h"
 
-DragonSlayer::DragonSlayer(const std::string name_, int hitPoints, int armour) : Character(hitPoints, armour, 4), name(name_) 
+DragonSlayer::DragonSlayer(const std::string name_, int hitPoints, int armor) : Character(hitPoints, armor, 4), name(name_) 
 { 
     helpfulItems = makeHelpfulItems(rand() % 5 + 1);
     defensiveItems = makeDefensiveItems(rand() % 5 + 1);
@@ -16,10 +16,7 @@ void DragonSlayer::attack(Character& other)
     std::cout << name << " is attacking " << other.getName() << " !!" << std::endl;
     if(auto* dragon = dynamic_cast<Dragon*>(&other))
     {
-        assert(false);
-        //DragonSlayers get a 10x boost when attacking dragons, from their attack item.
-        //so they should USE their attack item before attacking the dragon... 
-        //
+        attackItem.use(this);
         while(dragon->getHP() > 0)
         {
           dragon->takeDamage(attackDamage);

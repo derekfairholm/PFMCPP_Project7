@@ -4,8 +4,6 @@
 #include "DefensiveItem.h"
 #include "Character.h"
 
-#include <assert.h>
-
 
 std::vector<std::unique_ptr<Item>> makeHelpfulItems(int num)
 {
@@ -44,7 +42,7 @@ std::string getCharacterStats(Character* ch)
     str += "    " + std::to_string(ch->getHelpfulItems().size()) + " helpful items,  " + std::to_string(ch->getDefensiveItems().size()) + " defensive items";
     return str;
 }
-//Not sure here..............................................added pointer name "character"
+
 void useDefensiveItem(Character* character, Item& item)
 {
     //dwarves, paladins, and DragonSlayers get extra boosts from defensive item.
@@ -95,13 +93,14 @@ void useAttackItem(Character* character, Item* item)
     {
         ch->boostAttackDamage(item->getBoost() * 1.33);
     }
-    else if( auto* ch = dynamic_cast<DragonSlayer*>(character))
+    else if(auto* ch = dynamic_cast<DragonSlayer*>(character))
     {
-        assert(false);
+        //assert(false);
         //DragonSlayers get a 10x boost when attacking dragons, from their attack item.
         //so their attack item should boost their attack damage by a factor of 10
         //this means you need to GET the attack damage, multiply it by the item's boost, and BOOST the attackDamage with that multiplied value.  
         //check Character.h for available member functions you can use.
+        ch->boostAttackDamage(ch->getAttackDamage() * item->getBoost());
     }
     else if( auto* ch = dynamic_cast<Dragon*>(character) )
     {
