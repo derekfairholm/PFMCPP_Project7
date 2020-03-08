@@ -19,7 +19,7 @@ void DragonSlayer::attack(Character& other)
         attackItem.use(this);
         while(dragon->getHP() > 0)
         {
-          dragon->takeDamage(attackDamage);
+            dragon->takeDamage(attackDamage);
         }
     }
         
