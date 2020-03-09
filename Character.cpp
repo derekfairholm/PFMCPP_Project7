@@ -27,7 +27,6 @@ void Character::attack(Character& other)
     isDefending = false;
     std::cout << getName() << " has attacked " << other.getName() << std::endl;
     //subtract attackDamage from other->hitPoints
-    other.hitPoints -= this->attackDamage;
 
     if(other.takeDamage(attackDamage) <= 0 )
     {
@@ -39,7 +38,7 @@ void Character::attack(Character& other)
 void Character::defend()
 {
     std::cout << getName() << " is defending!!" << std::endl;
-    for( auto& item : defensiveItems )
+    for(auto& item : defensiveItems)
     {
         if( auto* defensiveItem = dynamic_cast<DefensiveItem*>(item.get()) )
         {
@@ -54,9 +53,9 @@ void Character::defend()
 void Character::help(Character& other)
 {
     std::cout << getName() << " is going to help " << other.getName() << std::endl;
-    for( auto& item : helpfulItems )
+    for(auto& item : helpfulItems)
     {
-        if( auto* helpfulItem = dynamic_cast<HelpfulItem*>(item.get()) )
+        if(auto* helpfulItem = dynamic_cast<HelpfulItem*>(item.get()))
         {
             helpfulItem->use(&other);
             item.reset(); //can only be used once!
@@ -100,13 +99,13 @@ void Character::attackInternal(Character& other)
       */
         //assert(false);
         // a)
-        hitPoints = *initialHitPoints;
-        armor = *initialArmorLevel;
-        attackDamage = *initialAttackDamage;
+        if(hitPoints < *initialHitPoints) { hitPoints = *initialHitPoints; }
+        if(armor < *initialArmorLevel) { armor = *initialArmorLevel; }
+        if(attackDamage < *initialAttackDamage) { attackDamage = *initialAttackDamage; }
         // b)
-        hitPoints *= 0.1;
-        armor *= 0.1;
-        attackDamage *= 0.1; 
+        hitPoints *= 1.1;
+        armor *= 1.1;
+        attackDamage *= 1.1; 
         // c)  
         *initialHitPoints = hitPoints;
         *initialArmorLevel = armor;
