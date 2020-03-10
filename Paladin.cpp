@@ -1,7 +1,16 @@
 #include "Paladin.h"
+#include "Utility.h"
 
-// Paladin::Paladin
+Paladin::Paladin(const std::string name_, int hitPoints, int armor) : Character(hitPoints, armor, 10), name(name_) 
+{ 
+    helpfulItems = makeHelpfulItems(rand() % 5 + 1);
+    defensiveItems = makeDefensiveItems(rand() % 5 + 1);
+}
 
-// Paladin::getName
+const std::string& Paladin::getName() { return name; }
 
-// Paladin::getStats
+std::string Paladin::getStats() { return getCharacterStats(this); }
+
+
+
+
