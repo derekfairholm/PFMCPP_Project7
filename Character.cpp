@@ -40,7 +40,7 @@ void Character::defend()
     std::cout << getName() << " is defending!!" << std::endl;
     for(auto& item : defensiveItems)
     {
-        if( auto* defensiveItem = dynamic_cast<DefensiveItem*>(item.get()) )
+        if(auto* defensiveItem = dynamic_cast<DefensiveItem*>(item.get()))
         {
             defensiveItem->use(this);
             item.reset(); //can only be used once!
@@ -103,9 +103,9 @@ void Character::attackInternal(Character& other)
         if(armor < *initialArmorLevel) { armor = *initialArmorLevel; }
         if(attackDamage < *initialAttackDamage) { attackDamage = *initialAttackDamage; }
         // b)
-        hitPoints *= 1.1;
-        armor *= 1.1;
-        attackDamage *= 1.1; 
+        boostHitPoints(hitPoints * 0.1);
+        boostArmor(armor * 0.1);
+        boostAttackDamage(attackDamage * 0.1); 
         // c)  
         *initialHitPoints = hitPoints;
         *initialArmorLevel = armor;

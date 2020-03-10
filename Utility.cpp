@@ -24,7 +24,7 @@ std::vector<std::unique_ptr<Item>> makeDefensiveItems(int num)
     
     while( num-- >= 0 )
     {
-        items.push_back( std::unique_ptr<DefensiveItem>(new DefensiveItem()) );
+        items.push_back(std::unique_ptr<DefensiveItem>(new DefensiveItem()));
     }
     
     std::cout << "made " << items.size() << " defensive items" << std::endl;
@@ -46,20 +46,20 @@ std::string getCharacterStats(Character* ch)
 void useDefensiveItem(Character* character, Item& item)
 {
     //dwarves, paladins, and DragonSlayers get extra boosts from defensive item.
-    if( auto* ch = dynamic_cast<Dwarf*>(character) )
+    if(auto* ch = dynamic_cast<Dwarf*>(character))
     {
         ch->boostArmor( item.getBoost() * 1.1 );
     }
-    else if( auto* ch = dynamic_cast<Paladin*>(character) )
+    else if(auto* ch = dynamic_cast<Paladin*>(character))
     {
         //same with paladins
         ch->boostArmor( item.getBoost() * 1.3 );
     }
-    else if( auto* ch = dynamic_cast<DragonSlayer*>(character))
+    else if(auto* ch = dynamic_cast<DragonSlayer*>(character))
     {
         ch->boostArmor( item.getBoost() * 1.5 );
     }
-    else if( auto* ch = dynamic_cast<Dragon*>(character) )
+    else if(auto* ch = dynamic_cast<Dragon*>(character))
     {
         //dragons don't need defensive items
     }  
